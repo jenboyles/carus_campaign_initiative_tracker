@@ -100,14 +100,14 @@ st.subheader('Enemy Type 1')
 
 #enemy 1 initiative and name input from user
 enemy_one_name = st.text_input('The name of Enemy Type 1 is:', value = 'Enemy Type 1')
-enemy_one_mod = st.text_input("Enemy Type 1's Initiative Modifier", value='None'
+enemy_one_mod = st.text_input(f"{enemy_one_name}'s Initiative Modifier", value='None'
 )
 
 #try to cast string to an integer
 #if not integer, this enemy is not in combat currently
 try:
     enemy_one_mod_int = int(enemy_one_mod)
-    st.write(f'The modifier of enemy type 1 is {enemy_one_mod_int}.')
+    st.write(f"{enemy_one_name}'s initiative modifier is {enemy_one_mod_int}.")
 except:
     st.write('There are no type 1 enemies in combat.')
     enemy_one_mod_int = 'None'
@@ -119,13 +119,13 @@ st.text("")
 st.subheader('Enemy Type 2')
 #enemy two initiative and name input from user
 enemy_two_name = st.text_input('The name of Enemy Type 2 is:', value = 'Enemy Type 2')
-enemy_two_mod = st.text_input("Enemy Type 2's Initiative Modifier", value='None')
+enemy_two_mod = st.text_input(f"{enemy_two_name}'s Initiative Modifier", value='None')
 
 #try to cast string to an integer
 #if not integer, this enemy is not in combat currently
 try:
     enemy_two_mod_int = int(enemy_two_mod)
-    st.write(f'The modifier of the type 2 enemy is {enemy_two_mod_int}.')
+    st.write(f"{enemy_two_name}'s initiative modifier is {enemy_two_mod_int}.")
 except:
     st.write('There are no type 2 enemies in combat.')
     enemy_two_mod_int = 'None'
@@ -137,13 +137,13 @@ st.text("")
 st.subheader('Enemy Type 3')
 #enemy three initiatve and name input from user
 enemy_three_name = st.text_input ('The name of Enemy Type 3 is:', value = 'Enemy Type 3')
-enemy_three_mod = st.text_input("Enemy Type 3's Initiative Modifier", value='None')
+enemy_three_mod = st.text_input(f"{enemy_three_name}'s Initiative Modifier", value='None')
 
 #try to cast to an integer
 #if not integer, this enemy is not in combat currently
 try:
     enemy_three_mod_int = int(enemy_three_mod)
-    st.write(f'The modifier of enemy type 3 is {enemy_three_mod_int}.')
+    st.write(f"{enemy_three_name}'s initiative modifier is {enemy_three_mod_int}.")
 except:
     st.write('There are no type 3 enemies in combat.')
     enemy_three_mod_int = 'None'
@@ -155,10 +155,10 @@ st.text("")
 st.subheader('Enemy Type 4')
 #enemy four initiative and name input from user
 enemy_four_name = st.text_input('The name of Enemy Type 4 is:', value = 'Enemy Type 4')
-enemy_four_mod = st.text_input("Enemy Type 4's Initiative Modifier", value='None')
+enemy_four_mod = st.text_input(f"{enemy_four_name}'s Initiative Modifier", value='None')
 try:
     enemy_four_mod_int = int(enemy_four_mod)
-    st.write(f'The modifier of enemy type 4 is {enemy_four_mod_int}.')
+    st.write(f"{enemy_four_name}'s initiative modifier is {enemy_four_mod_int}.")
 except:
     st.write('There are no type 4 enemies in combat.')
     enemy_four_mod_int = 'None'
