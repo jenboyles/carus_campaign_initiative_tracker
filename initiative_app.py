@@ -9,15 +9,14 @@ st.header('Carus Campaign: Initiative Tracker')
 st.write("This app will re-create initiative rolls for all PCs and NPCs at the end of a combat round.")
 
 
-#load in the class for PCs
-#always recreate PC initiatives
+#load in the class for fortune seeker's
+#always recreate PC initiatives on rerun
 #default initiatives in self
 
-#low value is inclusive, high value is exclusive
-#nested for loop to generate random numbers between 1 and 20 for each character and add their initiative modifier
-#make the output of the for loop a dictionary to be used in dataframe creation
+#low value is inclusive, high value is exclusive in np.random.randint
+#make the output of the class a dictionary to be used in dataframe creation
 
-class Milfnitiative:
+class FortuneSeekerInitiative:
     
     def __init__(self, alain_init=3, alain_name='Alain', 
                  cass_init=4, cass_name='Cassandra', 
@@ -40,9 +39,6 @@ class Milfnitiative:
         for char in pc_list:
             pc_init_dict[char] = (np.random.randint(low=1, high = 21))
             
-            #print('The pc dictionary before modifier addition.')
-            #print(pc_init_dict)
-            
             #if statement to add in the modifier for each pc
             if char == 'Alain':
                 pc_init_dict[char] = pc_init_dict[char] + self.alain_init
@@ -57,134 +53,143 @@ class Milfnitiative:
         return pc_init_dict
 
 #create class milfnitiative instance
-milf_initiative_instance = Milfnitiative()
+fortune_inits = FortuneSeekerInitiative()
 #return the milves initiatives in a dictionary
-milves_initiat_returned_dict = milf_initiative_instance.pc_initiative()        
+fortune_dict = fortune_inits.pc_initiative()        
 
-#instantiate the functions for enemies
-#base enemy function
-def base_enemies(base_init = 0, name = 'Base Enemy'):
-    base_init_dict = {}
-    base_init_dict[name] = np.random.randint(low=1,high=21)
-    base_init_dict[name] = base_init_dict[name] + base_init
+#instantiate the functions for the different enemy types
+#enemy 1 function
+def enemy_one(base_init = 0, name = 'Enemy Type One'):
+    enemy_one = {}
+    enemy_one[name] = np.random.randint(low=1,high=21)
+    enemy_one[name] = enemy_one[name] + base_init
     
-    #return base dict
-    return base_init_dict
+    #return enemy one dictionary
+    return enemy_one
 
-#mid-tier enemy function
-def mid_tier_enemies(base_init = 0, name = 'Mid-Tier'):
-    mid_init_dict = {}
-    mid_init_dict[name] = np.random.randint(low=1, high = 21)
-    mid_init_dict[name] = mid_init_dict[name] + base_init
+#enemy 2 function
+def enemy_two(base_init = 0, name = 'Enemy Type Two'):
+    enemy_two = {}
+    enemy_two[name] = np.random.randint(low=1, high = 21)
+    enemy_two[name] = enemy_two[name] + base_init
     
-    #return the mid-tier dict
-    return mid_init_dict
+    #return enemy two dictionary
+    return enemy_two
 
-#mini-boss function
-def mini_boss_init(base_init = 0, name = 'Mini-Boss'):
-    mini_boss_init_dict = {}
-    mini_boss_init_dict[name] = np.random.randint(low=1, high = 21)
-    mini_boss_init_dict[name] = mini_boss_init_dict[name] + base_init
+#enemy 3 function
+def enemy_three(base_init = 0, name = 'Enemy Type Three'):
+    enemy_three = {}
+    enemy_three[name] = np.random.randint(low=1, high = 21)
+    enemy_three[name] = enemy_three[name] + base_init
 
-    #return mini-boss dict
-    return mini_boss_init_dict
+    #return enemy three dictionary
+    return enemy_three
 
-#boss function
-def boss_initiatives(base_init = 0, name = 'Boss'):
-    boss_init_dict = {}
-    boss_init_dict[name] = np.random.randint(low=1, high = 21)
-    boss_init_dict[name] = boss_init_dict[name] + base_init
+#enemy 4 function
+def enemy_four(base_init = 0, name = 'Enemy Type Four'):
+    enemy_four = {}
+    enemy_four[name] = np.random.randint(low=1, high = 21)
+    enemy_four[name] = enemy_four[name] + base_init
     
-    #return dict
-    return boss_init_dict
+    #return enemy four dictionary
+    return enemy_four
 
 
 #get input for enemies initiatives
-#base initiative
 st.subheader('Enemy Type 1')
-base_name = st.text_input('The name of Enemy Type 1 is:', value = 'Enemy Type 1')
-base_init_mod = st.text_input("Enemy Type 1's Initiative Modifier", value='None'
+
+#enemy 1 initiative and name input from user
+enemy_one_name = st.text_input('The name of Enemy Type 1 is:', value = 'Enemy Type 1')
+enemy_one_mod = st.text_input("Enemy Type 1's Initiative Modifier", value='None'
 )
 
 #try to cast string to an integer
-#if not integer, this enemy is not in combat
+#if not integer, this enemy is not in combat currently
 try:
-    base_init_mod_int = int(base_init_mod)
-    st.write(f'The modifier of enemy type 1 is {base_init_mod_int}.')
+    enemy_one_mod_int = int(enemy_one_mod)
+    st.write(f'The modifier of enemy type 1 is {enemy_one_mod_int}.')
 except:
     st.write('There are no type 1 enemies in combat.')
-    base_init_mod_int = 'None'
+    enemy_one_mod_int = 'None'
     pass
 
 st.text("")
 
-#mid-tier initiative
+#enemy type 2 initiative
 st.subheader('Enemy Type 2')
-mid_name = st.text_input('The name of Enemy Type 2 is:', value = 'Enemy Type 2')
-mid_init_mod = st.text_input("Enemy Type 2's Initiative Modifier", value='None')
+#enemy two initiative and name input from user
+enemy_two_name = st.text_input('The name of Enemy Type 2 is:', value = 'Enemy Type 2')
+enemy_two_mod = st.text_input("Enemy Type 2's Initiative Modifier", value='None')
 
+#try to cast string to an integer
+#if not integer, this enemy is not in combat currently
 try:
-    mid_init_mod_int = int(mid_init_mod)
-    st.write(f'The modifier of the type 2 enemy is {mid_init_mod_int}.')
+    enemy_two_mod_int = int(enemy_two_mod)
+    st.write(f'The modifier of the type 2 enemy is {enemy_two_mod_int}.')
 except:
     st.write('There are no type 2 enemies in combat.')
-    mid_init_mod_int = 'None'
+    enemy_two_mod_int = 'None'
     pass
 
 st.text("")
 
-#mini-boss initiative
+#enemy type 3 initiative
 st.subheader('Enemy Type 3')
-mini_boss_name = st.text_input ('The name of Enemy Type 3 is:', value = 'Enemy Type 3')
-mini_boss_mod = st.text_input("Enemy Type 3's Initiative Modifier", value='None')
+#enemy three initiatve and name input from user
+enemy_three_name = st.text_input ('The name of Enemy Type 3 is:', value = 'Enemy Type 3')
+enemy_three_mod = st.text_input("Enemy Type 3's Initiative Modifier", value='None')
+
+#try to cast to an integer
+#if not integer, this enemy is not in combat currently
 try:
-    mini_boss_mod_int = int(mini_boss_mod)
-    st.write(f'The modifier of enemy type 3 is {mini_boss_mod_int}.')
+    enemy_three_mod_int = int(enemy_three_mod)
+    st.write(f'The modifier of enemy type 3 is {enemy_three_mod_int}.')
 except:
     st.write('There are no type 3 enemies in combat.')
-    mini_boss_mod_int = 'None'
+    enemy_three_mod_int = 'None'
     pass
 
 st.text("")
 
-#boss initiative
+#enemy type 4 initiative
 st.subheader('Enemy Type 4')
-boss_name = st.text_input('The name of Enemy Type 4 is:', value = 'Enemy Type 4')
-boss_mod = st.text_input("Enemy Type 4's Initiative Modifier", value='None')
+#enemy four initiative and name input from user
+enemy_four_name = st.text_input('The name of Enemy Type 4 is:', value = 'Enemy Type 4')
+enemy_four_mod = st.text_input("Enemy Type 4's Initiative Modifier", value='None')
 try:
-    boss_mod_int = int(boss_mod)
-    st.write(f'The modifier of enemy type 4 is {boss_mod_int}.')
+    enemy_four_mod_int = int(enemy_four_mod)
+    st.write(f'The modifier of enemy type 4 is {enemy_four_mod_int}.')
 except:
     st.write('There are no type 4 enemies in combat.')
-    boss_mod_int = 'None'
+    enemy_four_mod_int = 'None'
     pass
 
 st.text("")
 st.text("")
 
 st.subheader('Initiatives:')
-#load base enemy function
-if isinstance(base_init_mod_int, int) and isinstance(base_name, str):
-    bs_en_initiative = base_enemies(base_init = base_init_mod_int, name = base_name)
-    milves_initiat_returned_dict.update(bs_en_initiative)
+#load enemy type 1 function if the modifier could be cast to an integer and the name is a string
+if isinstance(enemy_one_mod_int, int) and isinstance(enemy_one_name, str):
+    enemy_one_init = enemy_one(base_init = enemy_one_mod_int, name = enemy_one_name)
+    fortune_dict.update(enemy_one_init)
 
-#load mid-tier enemy function
-if isinstance(mid_init_mod_int, int) and isinstance(mid_name, str):
-    mid_en_initiative = mid_tier_enemies(base_init = mid_init_mod_int, name = mid_name)
-    milves_initiat_returned_dict.update(mid_en_initiative)
+#load enemy type 2 function if the modifier could be cast to an integer and the name is a string
+if isinstance(enemy_two_mod_int, int) and isinstance(enemy_two_name, str):
+    enemy_two_init = enemy_two(base_init = enemy_two_mod_int, name = enemy_two_name)
+    fortune_dict.update(enemy_two_init)
     
 
-#load mini-boss enemy function
-if isinstance(mini_boss_mod_int, int) and isinstance(mini_boss_name, str):
-    min_boss_initiative = mini_boss_init(base_init = mini_boss_mod_int, name = mini_boss_name)
-    milves_initiat_returned_dict.update(min_boss_initiative)
+#load enemy type 3 function if the modifier could be cast to an integer and the name is a string
+if isinstance(enemy_three_mod_int, int) and isinstance(enemy_three_name, str):
+    enemy_three_init = enemy_three(base_init = enemy_three_mod_int, name = enemy_three_name)
+    fortune_dict.update(enemy_three_init)
 
-#load boss enemy function
-if isinstance(boss_mod_int, int) and isinstance(boss_name, str):
-    boss_init = boss_initiatives(base_init = boss_mod_int, name = boss_name)
-    milves_initiat_returned_dict.update(boss_init)
+#load enemy type 4 function if the modifier could be cast to an integer and the name is a string
+if isinstance(enemy_four_mod_int, int) and isinstance(enemy_four_name, str):
+    enemy_four_init = enemy_four(base_init = enemy_four_mod_int, name = enemy_four_name)
+    fortune_dict.update(enemy_four_init)
 
-#show the milf's and enemies initiatives in a single, sorted dataframe
-milf_df = pd.DataFrame(milves_initiat_returned_dict, index = ['Initiatives']).T
-milf_df = milf_df.sort_values(by = 'Initiatives', ascending = False)
-st.dataframe(milf_df)
+#show the fortune seeker's initiatives and enemies initiatives in a single, sorted dataframe
+fortune_df = pd.DataFrame(fortune_dict, index = ['Initiatives']).T
+fortune_df = fortune_df.sort_values(by = 'Initiatives', ascending = False)
+st.dataframe(fortune_df)
