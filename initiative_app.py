@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np 
 import streamlit as st
 from streamlit import caching
-from streamlit.script_runner import RerunException
 
 #create the header for the app
 st.header('Carus Campaign: Initiative Tracker')
