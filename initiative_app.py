@@ -20,7 +20,7 @@ st.write("This app will re-create initiative rolls for all PCs and NPCs at the e
 class FortuneSeekerInitiative:
     
     def __init__(self, alain_init=3, alain_name='Alain', 
-                 cass_init=7, cass_name='Cassandra', 
+                 cass_init=8, cass_name='Cassandra', 
                  wildhrt_init=1, wildhrt_name='Wildheart', 
                  idalia_init=1, idalia_name='Idalia'):
         self.alain_init = alain_init
